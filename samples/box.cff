@@ -1,0 +1,36 @@
+name: Box ;
+platform: PositionalRobot ;
+// actuators: Float yPos, xPos ;
+
+// New here: global memory
+
+int timesAround ;
+
+initial state: Init {
+  goto MoveNorth when true
+    performing { timesAround := 0 ; xPos := 0.0; yPos := 0.0; } ;
+}
+
+state: MoveNorth {
+  exit when timesAround == 4 performing { } ;
+  goto MoveEast  when yPos >= 100 performing { } ;
+  goto MoveNorth when true performing { yPos := yPos + 1.0 ; } ;
+}
+
+state: MoveEast {
+  goto MoveSouth when xPos >= 100 performing { } ;
+  goto MoveEast  when true performing { xPos := xPos + 1.0 ; } ;
+}
+
+state: MoveSouth {
+  goto MoveWest  when yPos <= 0.0 performing { } ;
+  goto MoveSouth when true performing { yPos := yPos - 1.0 ; } ;
+}
+
+state: MoveWest { 
+  goto MoveNorth when xPos <= 0.0
+    performing { timesAround := timesAround + 1; } ;
+  goto MoveWest  when true
+    performing { xPos := xPos - 1.0 ; } ;
+}
+    

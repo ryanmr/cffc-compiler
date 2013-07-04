@@ -1,0 +1,57 @@
+/* This state machine recognizes the string (ab)*.  */
+
+name: ABStar ;
+platform: RegexRecognizer ;
+
+/* The RegexRecognizer platform make the sensor 
+   "nextChar" of type char and the actuator 
+   "outputBuffer" of type string available for
+   use in the state machine. */
+
+// The initial state is also the final state.
+initial state: Final {
+  goto NeedB when nextChar == 'a' 
+    performing { 
+      outputBuffer := "In Final, found A" ; 
+    } ;
+
+  goto Error when nextChar != '\0'
+    performing {
+      outputBuffer := "In Final, found something other than B" ; 
+    } ;
+
+  exit when nextChar == '\0'
+    performing {
+      outputBuffer := "In Final, exiting." ; 
+    } ;
+}
+
+state: NeedB {
+  goto Final when nextChar == 'b' 
+    performing { 
+      outputBuffer := "In NeedB, found B" ; 
+    } ;
+
+  goto Error when nextChar != '\0' 
+    performing {
+      outputBuffer := "In NeedB, found something other than B" ; 
+    } ;
+
+  exit when nextChar == '\0'
+    performing {
+      outputBuffer := "In NeeDB, exiting." ; 
+    } ;
+}
+
+state: Error {
+  goto Error when nextChar != '\0' 
+    performing {
+      outputBuffer := "In Error" ; 
+    } ;
+
+  exit when nextChar == '\0'
+    performing {
+      outputBuffer := "In Error, exiting." ; 
+    } ;
+}
+

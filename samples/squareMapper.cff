@@ -1,0 +1,9 @@
+name: SquareMapper ;
+platform: IntegerStreamComputer ;
+// provides int input as sensor, that changes with each step
+// and int output as actuator,  that gets printed at each step
+
+initial state: Square {
+  goto Square when true 
+    performing { output := input * input ; } ;
+} 

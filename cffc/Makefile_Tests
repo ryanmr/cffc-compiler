@@ -1,0 +1,43 @@
+sumOfSquares:
+	make -f Makefile_Robot clean
+	./cffc ../samples/sumOfSquares.cff
+	make -f Makefile_Robot
+
+	./machine 1 > sumOfSquares_1.out
+	diff sumOfSquares_1.out sumOfSquares_1.expected
+
+	./machine 4 > sumOfSquares_4.out
+	diff sumOfSquares_4.out sumOfSquares_4.expected
+
+abstar:	
+	make -f Makefile_Robot clean
+	./cffc ../samples/abstar.cff
+	make -f Makefile_Robot
+
+	./machine abab > abstar_abab.out
+	diff abstar_abab.out abstar_abab.expected
+
+	./machine aabb > abstar_aabb.out
+	diff abstar_aabb.out abstar_aabb.expected
+
+squareMapper:
+	make -f Makefile_Robot clean
+	./cffc ../samples/squareMapper.cff
+	make -f Makefile_Robot
+
+	./machine 1 2 3 > squareMapper_1_2_3.out
+	diff squareMapper_1_2_3.out squareMapper_1_2_3.expected
+	./machine 4 5 6 > squareMapper_4_5_6.out
+	diff squareMapper_4_5_6.out squareMapper_4_5_6.expected
+	./machine 7 > squareMapper_7.out
+	diff squareMapper_7.out squareMapper_7.expected
+
+box:	
+	make -f Makefile_Robot clean
+	./cffc ../samples/box.cff
+	make -f Makefile_Robot
+
+	./machine > box.out
+	diff box.out box.expected
+
+all:	sumOfSquares abstar squareMapper box

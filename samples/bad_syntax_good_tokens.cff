@@ -1,0 +1,45 @@
+/* A block comment */
+
+// a line comment 
+
+
+/* Below is some literals for integer, float, character, and string
+literals that your scanner should recognize accordingly. */
+
+1 2 3 4
+
+"Hello"  "I am a string literal"
+
+// the empty string
+""
+
+1.2 3.4 5.6
+
+
+// characters - with a single character
+'a'  'b'  'c'  '1'  '2'  '0'   '\0'
+
+// literal values for true and false
+true  false
+
+
+/* below are some single-character punctuation and operator symbols */
+: ; , { ( } ) + * - / > < 
+
+/* below are some multi-character punctuation and operator symbols */
+== <= >= !=  :=
+
+/* Some sample variable names */
+a b c  length  point88   DepthInFeet   height_in_meters
+
+/* Some keywords - these are not variable names */
+
+name platform initial state
+goto when exit performing
+
+
+/* The following keywords are for types that may be use in the final
+   implementation of the state machine for ths carp tracking robot.
+   Additional new terminal symbols may be added as well.
+ */
+int float boolean string char
